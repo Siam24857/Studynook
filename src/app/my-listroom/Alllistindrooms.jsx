@@ -9,8 +9,9 @@ import React, { useState } from "react";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { TfiMoney } from "react-icons/tfi";
 import { toast } from "react-toastify";
+import { authClient } from "@/app/lib/auth-client";
 
-const Alllistindrooms = ({ da, token }) => {
+const Alllistindrooms = ({ da  }) => {
   const router = useRouter();
   
   const {
@@ -64,12 +65,12 @@ const Alllistindrooms = ({ da, token }) => {
     }
 
     try {
-      // Update listed room
+      const {data, error} = await authClient.token()
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/listed/${_id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json", 
-          authorization: `Bearer ${token}`,
+          authorization: `Bearer ${data.token}`,
         },
         body: JSON.stringify(finalData)
       });
@@ -81,7 +82,7 @@ const Alllistindrooms = ({ da, token }) => {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          authorization: `Bearer ${token}`
+          authorization: `Bearer ${data.token}`
         },
         body: JSON.stringify(finalData)
       });
@@ -110,11 +111,12 @@ const Alllistindrooms = ({ da, token }) => {
     }
     
     try {
+       const {data, error} = await authClient.token()
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/listed/${_id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
+          authorization: `Bearer ${data.token}`,
         },
       });
 
