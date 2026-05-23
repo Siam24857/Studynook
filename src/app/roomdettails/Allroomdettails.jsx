@@ -23,20 +23,7 @@ const Allroomdettails = () => {
   const id = params.id;
  
 
- 
   const [room, setRoom] = useState(null);
-  
-
-   const { data: session } = useSession()
-
-    const user = session?.user;
-
-    if(!user) {
-        redirect("/login")
-    }
-
-  
-
   
   useEffect(() => {
 
