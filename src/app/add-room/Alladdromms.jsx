@@ -53,22 +53,14 @@ const Alladdromms = () => {
 
         try {
             // FIXED: Properly get token
-            const tokenResult = await authClient.getToken(); // Changed from authClient.token()
-            const token = tokenResult?.data?.token || tokenResult?.token;
-            
-            if (!token) {
-                toast.error("Authentication failed. Please login again.");
-                router.push("/login");
-                setIsLoading(false);
-                return;
-            }
+            const token = await authClient.getToken(); // Changed from authClient.token()
 
             const [addRoomRes, addListedRes] = await Promise.all([
                 fetch(`${API_URL}/add-rooms`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        authorization: `Bearer ${token}`,
+                        authorization: `Bearer ${token.token}`,
                     },
                     credentials: 'include',
                     body: JSON.stringify(finalData),
