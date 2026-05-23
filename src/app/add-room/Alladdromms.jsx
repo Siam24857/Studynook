@@ -69,7 +69,7 @@ const Alladdromms = () => {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        authorization: `Bearer ${token}`,
+                        authorization: `Bearer ${data.token}`,
                     },
                     credentials: 'include',
                     body: JSON.stringify(finalData),
