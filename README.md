@@ -3,7 +3,7 @@
 # StudyNook
 
 ### Live Site URL
-https://ass-project-9.vercel.app
+https://stufynook-project-9.vercel.app
 
 ---
 
